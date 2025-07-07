@@ -18,7 +18,6 @@ const NewIssue = () => {
   const router = useRouter();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
-
   const {
     control,
     register,
@@ -26,6 +25,17 @@ const NewIssue = () => {
     formState: { errors },
   } = useForm<FormValues>({
     resolver: zodResolver(issueSchema),
+  });
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      setLoading(true);
+      await axios.post("/api/issues", data);
+
+      router.push("/issues");
+    } catch (error) {
+      setError("unexpected error occurred");
+      setLoading(false);
+    }
   });
 
   return (
@@ -36,20 +46,7 @@ const NewIssue = () => {
         </Text>
       )}
 
-      <form
-        className=" space-y-3"
-        onSubmit={handleSubmit(async (data) => {
-          try {
-            setLoading(true);
-            await axios.post("/api/issues", data);
-
-            router.push("/issues");
-          } catch (error) {
-            setError("unexpected error occurred");
-            setLoading(false);
-          }
-        })}
-      >
+      <form className=" space-y-3" onSubmit={onSubmit}>
         <TextField.Root>
           <TextFieldInput
             placeholder="title"
