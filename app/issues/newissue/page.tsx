@@ -11,7 +11,6 @@ import { issueSchema } from "@/app/ValidationSchema";
 import { z } from "zod";
 import ErrorMessage from "@/app/components/ErrorMessage";
 import Spinner from "@/app/components/Spinner";
-import { set } from "lodash";
 
 type FormValues = z.infer<typeof issueSchema>;
 const NewIssue = () => {
