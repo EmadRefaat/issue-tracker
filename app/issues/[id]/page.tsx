@@ -6,6 +6,8 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import { Pencil2Icon } from "@radix-ui/react-icons";
 import Link from "next/link";
+import EditIssueButtons from "./EditIssueButtons";
+import IssueDetail from "./IssueDetail";
 interface props {
   params: { id: string };
 }
@@ -20,20 +22,10 @@ const IssueDetailsPage = async ({ params: { id } }: props) => {
   return (
     <Grid columns={{ xs: "1", sm: "2" }} gap="4">
       <Box>
-        <Heading>{issue?.title}</Heading>
-        <Flex gap="2" my="2">
-          <StatusBadge status={issue.status}></StatusBadge>
-          <Text>{issue?.createdAt.toDateString()}</Text>
-        </Flex>
-        <Card className="prose">
-          <ReactMarkdown>{issue?.description}</ReactMarkdown>
-        </Card>
+        <IssueDetail issue={issue}></IssueDetail>
       </Box>
       <Box>
-        <Button>
-          <Pencil2Icon />
-          <Link href={`/issues/${issue.id}/edit`}>Updatte issue</Link>
-        </Button>
+        <EditIssueButtons issueId={issue.id}></EditIssueButtons>
       </Box>
     </Grid>
   );
