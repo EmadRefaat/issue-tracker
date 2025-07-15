@@ -7,7 +7,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { issueSchema } from "@/app/ValidationSchema";
+import { ValidationSchema } from "@/app/ValidationSchema";
 import { z } from "zod";
 import ErrorMessage from "@/app/components/ErrorMessage";
 import Spinner from "@/app/components/Spinner";
@@ -17,7 +17,7 @@ const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
   ssr: false,
 });
 
-type FormValues = z.infer<typeof issueSchema>;
+type FormValues = z.infer<typeof ValidationSchema>;
 
 interface props {
   issue?: Issue | null;
@@ -32,18 +32,22 @@ const IssueForm = ({ issue }: props) => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({
-    resolver: zodResolver(issueSchema),
+    resolver: zodResolver(ValidationSchema),
   });
   const onSubmit = handleSubmit(async (data) => {
     try {
       setLoading(true);
-      await axios.post("/api/issues", data);
+      if (issue) {
+        await axios.patch(`/api/issues/${issue.id}`, data);
+      } else {
+        await axios.post("/api/issues", data);
 
-      router.push("/issues");
+        router.push("/issues");
+      }
     } catch (error) {
       setError("unexpected error occurred");
-      setLoading(false);
     }
+    setLoading(false);
   });
 
   return (
@@ -73,7 +77,8 @@ const IssueForm = ({ issue }: props) => {
         />
         <ErrorMessage>{errors.description?.message}</ErrorMessage>
         <Button disabled={loading}>
-          submit issue {loading && <Spinner></Spinner>}
+          {issue ? "Update issue" : "submit issue"}{" "}
+          {loading && <Spinner></Spinner>}
         </Button>
       </form>
     </div>
