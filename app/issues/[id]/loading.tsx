@@ -1,7 +1,5 @@
 import { Box, Flex } from "@radix-ui/themes";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
-
+import Skeleton from "@/app/components/Skeleton";
 const IssueDetailLoadingPage = () => {
   return (
     <Box className="max-w-2xl ">

@@ -1,13 +1,5 @@
-import ErrorMessage from "@/app/components/ErrorMessage";
-import Spinner from "@/app/components/Spinner";
-import { TextField, TextFieldInput, Button, Box } from "@radix-ui/themes";
-import { error } from "console";
-import React from "react";
-import { Controller } from "react-hook-form";
-import loading from "../loading";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
-
+import { Box } from "@radix-ui/themes";
+import Skeleton from "@/app/components/Skeleton";
 const NewIssueLoading = () => {
   return (
     <Box className="max-w-xl ">
