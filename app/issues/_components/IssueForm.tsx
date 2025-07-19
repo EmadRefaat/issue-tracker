@@ -41,6 +41,7 @@ const IssueForm = ({ issue }: props) => {
         await axios.post("/api/issues", data);
 
         router.push("/issues");
+        router.refresh();
       }
     } catch (error) {
       setError("unexpected error occurred");
