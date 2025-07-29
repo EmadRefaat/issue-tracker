@@ -17,3 +17,9 @@ body {
   color: rgb(var(--foreground-rgb));
   font-family: var(--default-font-family), sans-serif;
 }
+
+@layer utilities {
+  .navbar-link {
+    @apply text-zinc-400 hover:text-zinc-800 transition-colors;
+  }
+}
