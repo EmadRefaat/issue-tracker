@@ -8,10 +8,10 @@ export async function PATCH(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  // const session = await getServerSession(authOption);
-  // if (!session) {
-  //   return NextResponse.json({}, { status: 404 });
-  // }
+  const session = await getServerSession(authOption);
+  if (!session) {
+    return NextResponse.json({}, { status: 404 });
+  }
 
   const body = await request.json();
 

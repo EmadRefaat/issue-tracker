@@ -5,12 +5,17 @@ import { User } from "next-auth";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Skeleton from "@/app/components/Skeleton";
+import { Issue } from "@prisma/client";
 
 const fetchUsers = async () => {
   const { data } = await axios.get("/api/users");
   return Array.isArray(data) ? data : data.users ?? [];
 };
-const AssgineeSelect = () => {
+
+interface props {
+  issue: Issue;
+}
+const AssgineeSelect = ({ issue }: props) => {
   const {
     data: users = [],
     isLoading,
@@ -24,11 +29,19 @@ const AssgineeSelect = () => {
   if (isLoading) return <Skeleton></Skeleton>;
   if (error) return null;
   return (
-    <Select.Root>
+    <Select.Root
+      defaultValue={issue.assignedToUserId || ""}
+      onValueChange={(userId) =>
+        axios.patch("/api/issues/" + issue.id, {
+          assignedToUserId: userId || null,
+        })
+      }
+    >
       <Select.Trigger placeholder="Assignee" />
       <Select.Content>
         <Select.Group>
           <Select.Label>Suggestion</Select.Label>
+          <Select.Item value="">Unassigned</Select.Item>
           {users?.map((user) => (
             <Select.Item key={user.id} value={user.id}>
               {user.name}

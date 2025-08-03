@@ -19,5 +19,6 @@ export const PatchValidaton = z.object({
   assignedToUserId: z
     .string()
     .min(1, "assignedToUserId is required ")
-    .optional(),
+    .optional()
+    .nullable(),
 });
