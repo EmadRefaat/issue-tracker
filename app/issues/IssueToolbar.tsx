@@ -6,7 +6,7 @@ import IssueStatus from "./IssueStatus";
 const IssueToolbar = () => {
   return (
     <>
-      <Flex mb="4" justify="between">
+      <Flex justify="between">
         <IssueStatus />
         <Button>
           <Link href="/issues/newissue">new issue</Link>
