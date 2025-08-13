@@ -9,6 +9,7 @@ import { orderBy } from "lodash";
 import { ArrowUpIcon, UploadIcon } from "@radix-ui/react-icons";
 import Pagination from "../components/Pagination";
 import IssueTable, { IssueQuery, issuesValues } from "./IssueTable";
+import { Metadata } from "next";
 
 interface props {
   searchParams: IssueQuery;
@@ -56,6 +57,11 @@ const IssuesPage = async ({ searchParams }: props) => {
       </Flex>
     </>
   );
+};
+
+export const metadata: Metadata = {
+  title: "issue tracker - issues list",
+  description: "issue tracker issues list",
 };
 
 export const dynamic = "force-dynamic";

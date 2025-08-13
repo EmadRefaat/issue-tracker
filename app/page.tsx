@@ -1,11 +1,9 @@
-import Image from "next/image";
-import Pagination from "./components/Pagination";
-import LatestIssueTable from "./LatestIssueTable";
-import IssueSummary from "./IssueSummary";
 import { prisma } from "@/prisma/client";
-import IssueCharts from "./IssueCharts";
 import { Flex, Grid } from "@radix-ui/themes";
-import { initial } from "lodash";
+import { Metadata } from "next";
+import IssueCharts from "./IssueCharts";
+import IssueSummary from "./IssueSummary";
+import LatestIssueTable from "./LatestIssueTable";
 
 export default async function Home() {
   const open = await prisma.issue.count({
@@ -27,3 +25,8 @@ export default async function Home() {
     </Grid>
   );
 }
+
+export const metadata: Metadata = {
+  title: "issue tracker - dashboard",
+  description: "issue tracker dashboard",
+};
