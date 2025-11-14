@@ -8,6 +8,7 @@ CREATE TABLE `Issue` (
     `updatedAt` DATETIME(3) NOT NULL,
     `assignedToUserId` VARCHAR(255) NULL,
 
+    INDEX `Issue_assignedToUserId_idx`(`assignedToUserId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
