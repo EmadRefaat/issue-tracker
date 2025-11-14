@@ -37,7 +37,7 @@ const IssueDetailsPage = async ({ params: { id } }: props) => {
   );
 };
 
-export async function genrateMetadata({ params: { id } }: props) {
+export async function generateMetadata({ params: { id } }: props) {
   const issue = await fechIssue(parseInt(id));
   return {
     title: issue?.title,
