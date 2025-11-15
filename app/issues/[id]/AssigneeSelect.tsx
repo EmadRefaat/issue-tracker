@@ -1,6 +1,6 @@
 "use client";
 import Skeleton from "@/app/components/Skeleton";
-import { Issue } from "@prisma/client";
+import { issue } from "@prisma/client";
 import { Select } from "@radix-ui/themes";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -12,7 +12,7 @@ const fetchUsers = async () => {
 };
 
 interface props {
-  issue: Issue;
+  issue: issue;
 }
 
 const useUsers = () =>
