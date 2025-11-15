@@ -3,17 +3,17 @@ import { Table } from "@radix-ui/themes";
 import Link from "next/link";
 import React from "react";
 import StatusBadge from "../components/StatusBadge";
-import { Issue, Status } from "@prisma/client";
+import { issue, status } from "@prisma/client";
 import NextLink from "next/link";
 
 export interface IssueQuery {
-  status: Status;
-  orderBy: keyof Issue;
+  status: status;
+  orderBy: keyof issue;
   page: string;
 }
 interface props {
   searchParams: IssueQuery;
-  issues: Issue[];
+  issues: issue[];
 }
 
 const IssueTable = ({ searchParams, issues }: props) => {
@@ -63,7 +63,7 @@ const IssueTable = ({ searchParams, issues }: props) => {
 
 const columns: {
   label: string;
-  value: keyof Issue;
+  value: keyof issue;
   className?: "hidden md:table-cell";
 }[] = [
   { label: "issue", value: "title" },
