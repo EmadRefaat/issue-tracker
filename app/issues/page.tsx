@@ -3,7 +3,7 @@ import { Flex, Table, TableCell, TableRow } from "@radix-ui/themes";
 import React from "react";
 import StatusBadge from "../components/StatusBadge";
 import IssueToolbar from "./IssueToolbar";
-import { Issue, Status } from "@prisma/client";
+import { Status } from "@prisma/client";
 import Link from "../components/Link";
 import { orderBy } from "lodash";
 import { ArrowUpIcon, UploadIcon } from "@radix-ui/react-icons";
